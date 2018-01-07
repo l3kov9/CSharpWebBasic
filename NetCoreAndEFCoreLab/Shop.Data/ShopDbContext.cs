@@ -1,6 +1,7 @@
 ﻿namespace Shop.Data
 {
     using Microsoft.EntityFrameworkCore;
+    using Shop.Data.EntityConfig;
     using Shop.Data.ServeConfig;
     using Shop.Models;
 
@@ -25,48 +26,16 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .Entity<Customer>()
-                .HasOne(c => c.Salesman)
-                .WithMany(s => s.Customers)
-                .HasForeignKey(c => c.SalesmanId);
+                .ApplyConfiguration(new CustomerConfig());
 
             builder
-                .Entity<Customer>()
-                .HasMany(c => c.Orders)
-                .WithOne(o => o.Customer)
-                .HasForeignKey(o => o.CustomerId);
+                .ApplyConfiguration(new ItemConfig());
 
             builder
-                .Entity<Customer>()
-                .HasMany(c => c.Revies)
-                .WithOne(r => r.Customer)
-                .HasForeignKey(r => r.CustomerId);
+                 .ApplyConfiguration(new ItemOrderConfig());
 
             builder
-                .Entity<ItemOrder>()
-                .HasKey(io => new
-                {
-                    io.ItemId,
-                    io.OrderId
-                });
-
-            builder
-                .Entity<Item>()
-                .HasMany(i => i.Orders)
-                .WithOne(io => io.Item)
-                .HasForeignKey(io => io.ItemId);
-
-            builder
-                .Entity<Order>()
-                .HasMany(o => o.Items)
-                .WithOne(io => io.Order)
-                .HasForeignKey(io => io.OrderId);
-
-            builder
-                .Entity<Item>()
-                .HasMany(i => i.Reviews)
-                .WithOne(r => r.Item)
-                .HasForeignKey(r => r.ItemId);
+                .ApplyConfiguration(new OrderConfig());
         }
     }
 }

@@ -13,13 +13,13 @@
 
             using (db)
             {
-                CreateDatabase(db);
+                // CreateDatabase(db);
 
-                SeedSalesmen(db);
-
-                SeedItems(db);
-
-                ReadCommands(db);
+                // SeedSalesmen(db);
+                 
+                // SeedItems(db);
+                
+                // ReadCommands(db);
 
                 // PrintSalesmenWithCustomerCount(db);
 
@@ -29,7 +29,7 @@
 
                 // PrintCustomerDataById(db);
 
-                PrintCustomersOrderWithMoreThanOneItem(db);
+                // PrintCustomersOrderWithMoreThanOneItem(db);
             }
         }
 
