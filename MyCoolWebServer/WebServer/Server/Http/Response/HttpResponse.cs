@@ -2,8 +2,9 @@
 {
     using System.Text;
     using WebServer.Server.Enums;
+    using WebServer.Server.Http.Contracts;
 
-    public abstract class HttpResponse
+    public abstract class HttpResponse : IHttpResponse
     {
         private string statusCodeMessage => this.StatusCode.ToString();
 

@@ -48,7 +48,7 @@
         private void ParseRequest(string requestText)
         {
             var requestLines = requestText
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                .Split(Environment.NewLine);
 
             var requestLine = requestLines[0].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -123,7 +123,7 @@
             for (int i = 1; i < emptyLineAfterHeading; i++)
             {
                 var currentLine = requestLines[i];
-                var headerParts = currentLine.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                var headerParts = currentLine.Split(new[] { ": " }, StringSplitOptions.RemoveEmptyEntries);
 
                 if(headerParts.Length != 2)
                 {
