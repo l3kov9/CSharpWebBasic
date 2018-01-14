@@ -1,12 +1,12 @@
-﻿namespace MyCoolWebServer.ByTheCakeApplication.Views.Home
+﻿namespace MyCoolWebServer.ByTheCakeApplication.Views
 {
     using MyCoolWebServer.Server.Contracts;
 
-    public class AboutView : IView
+    public class FileView : IView
     {
         private readonly string htmlFile;
 
-        public AboutView(string htmlFile)
+        public FileView(string htmlFile)
         {
             this.htmlFile = htmlFile;
         }
