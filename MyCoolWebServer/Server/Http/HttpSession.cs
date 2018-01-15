@@ -28,6 +28,8 @@
 
         public void Clear() => this.values.Clear();
 
+        public bool Contains(string key) => this.values.ContainsKey(key);
+
         public object Get(string key)
         {
             CoreValidator.ThrowIfNull(key, nameof(key));

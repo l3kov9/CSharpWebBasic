@@ -7,14 +7,15 @@
     public class CalculatorController : Controller
     {
         public IHttpResponse Index()
-            => this.FileViewResponse(@"\Calculator\index", new Dictionary<string, string>
-            {
-                ["showResult"] = "none"
-            });
+        {
+            this.ViewData["showResult"] = "none";
+
+            return this.FileViewResponse(@"\Calculator\index");
+        }
 
         public IHttpResponse Index(string firstNumber, string operation, string secondNumber)
         {
-            if(firstNumber == null || secondNumber == null || operation == null)
+            if (firstNumber == null || secondNumber == null || operation == null)
             {
                 return this.Index();
             }
@@ -25,7 +26,8 @@
 
             switch (operation)
             {
-                case "+": result = firstNum + secondNum;
+                case "+":
+                    result = firstNum + secondNum;
                     break;
                 case "-":
                     result = firstNum - secondNum;
@@ -40,11 +42,10 @@
                     break;
             }
 
-            return this.FileViewResponse(@"\Calculator\index", new Dictionary<string, string>
-            {
-                ["result"] = result.ToString(),
-                ["showResult"] = "block"
-            });
+            this.ViewData["result"] = result.ToString();
+            this.ViewData["showResult"] = "block";
+
+            return this.FileViewResponse(@"\Calculator\index");
         }
     }
 }

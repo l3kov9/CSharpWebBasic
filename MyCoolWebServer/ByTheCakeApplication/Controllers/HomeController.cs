@@ -6,7 +6,9 @@
     public class HomeController : Controller
     {
         public IHttpResponse Index()
-            => this.FileViewResponse(@"Home\index");
+        {
+            return this.FileViewResponse(@"home\index");
+        }
 
         public IHttpResponse About()
             => this.FileViewResponse(@"Home\about");

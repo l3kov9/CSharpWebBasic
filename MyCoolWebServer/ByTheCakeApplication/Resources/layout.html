@@ -9,6 +9,13 @@
     <meta name="author" content="Emil Lekov" />
 </head>
 <body>
+    <form style="display: {{{authDisplay}}}" method="post" action="/logout">
+        <input type="submit" value="Logout" />
+    </form>
+    <br />
+    <!--<div style="display: {{{authDisplay}}}">
+        Hello, {{{username}}}
+    </div>-->
     {{{content}}}
     <hr />
     <footer style="text-align:center">
