@@ -1,9 +1,9 @@
 ﻿namespace MyCoolWebServer.ByTheCakeApplication.Helpers
 {
-    using MyCoolWebServer.ByTheCakeApplication.Views;
-    using MyCoolWebServer.Server.Enums;
-    using MyCoolWebServer.Server.Http.Contracts;
-    using MyCoolWebServer.Server.Http.Response;
+    using Views;
+    using Server.Enums;
+    using Server.Http.Contracts;
+    using Server.Http.Response;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -36,6 +36,12 @@
             }
 
             return new ViewResponse(HttpStatusCode.Ok, new FileView(result));
+        }
+
+        protected void ApplyError(string errorMessage)
+        {
+            this.ViewData["showError"] = "block";
+            this.ViewData["error"] = errorMessage;
         }
 
         private string ProcessFileHtml(string fileName)

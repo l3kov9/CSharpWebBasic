@@ -3,11 +3,22 @@
 <form method="post">
     Name:
     <input type="text" name="name" placeholder="Name" />
+    <br />
     Price:
     <input type="number" min="0" name="price" placeholder="Price" />
+    <br />
+    Image Url:
+    <input type="url" name="imageUrl" placeholder="Image Url" />
+    <br />
     <input type="submit" value="Add Cake" />
 </form>
+
+<div style="display: {{{showError}}}; color: red">
+    {{{error}}}
+</div>
+
 <div style="display: {{{showResult}}}">
     <h4>Name: {{{name}}}</h4>
     <h4>Price: {{{price}}}</h4>
+    <img src="{{{imageUrl}}}" alt="{{{name}}}" width="300"/>
 </div>

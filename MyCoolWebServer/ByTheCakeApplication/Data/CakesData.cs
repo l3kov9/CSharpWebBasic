@@ -1,6 +1,6 @@
 ﻿namespace MyCoolWebServer.ByTheCakeApplication.Data
 {
-    using MyCoolWebServer.ByTheCakeApplication.Models;
+    using MyCoolWebServer.ByTheCakeApplication.ViewModels;
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -24,24 +24,26 @@
             }
         }
 
-        public IEnumerable<Cake> All()
-        {
-            return File
-                    .ReadAllLines(@"ByTheCakeApplication\Data\Database.csv")
-                    .Where(l => l.Contains(','))
-                    .Select(l => l.Split(','))
-                    .Select(l => new Cake
-                    {
-                        Id = int.Parse(l[0]),
-                        Name = l[1],
-                        Price = decimal.Parse(l[2])
-                    });
-        }
+        // first idea of the project without DB
 
-        public Cake Find(int id)
-        {
-            return this.All()
-                .FirstOrDefault(c => c.Id == id);
-        }
+        //public IEnumerable<Cake> All()
+        //{
+        //    return File
+        //            .ReadAllLines(@"ByTheCakeApplication\Data\Database.csv")
+        //            .Where(l => l.Contains(','))
+        //            .Select(l => l.Split(','))
+        //            .Select(l => new Cake
+        //            {
+        //                Id = int.Parse(l[0]),
+        //                Name = l[1],
+        //                Price = decimal.Parse(l[2])
+        //            });
+        //}
+
+        //public Cake Find(int id)
+        //{
+        //    return this.All()
+        //        .FirstOrDefault(c => c.Id == id);
+        //}
     }
 }

@@ -24,7 +24,7 @@
             this.UrlParameters = new Dictionary<string, string>();
             this.Headers = new HttpHeaderCollection();
             this.Cookies = new HttpCookieCollection();
-
+            this.Session = new HttpSession();
             this.ParseRequest(requestText);
         }
 
@@ -75,7 +75,7 @@
             this.Method = this.ParseMethod(requestLine.First());
             this.Url = requestLine[1];
             this.Path = this.ParsePath(this.Url);
-
+            
             this.ParseHeaders(requestLines);
             this.ParseCookies();
             this.ParseParameters();
@@ -197,11 +197,11 @@
                 return;
             }
 
-            var queryPairs = query.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
+            var queryPairs = query.Split(new[] { '&' });
 
             foreach (var queryPair in queryPairs)
             {
-                var queryKvp = queryPair.Split(new[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
+                var queryKvp = queryPair.Split(new[] { '=' });
 
                 if (queryKvp.Length != 2)
                 {

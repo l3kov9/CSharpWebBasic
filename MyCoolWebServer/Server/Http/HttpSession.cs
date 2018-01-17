@@ -7,7 +7,7 @@
     public class HttpSession : IHttpSession
     {
         private readonly IDictionary<string, object> values;
-
+        public HttpSession() { this.values = new Dictionary<string, object>(); }
         public HttpSession(string id)
         {
             CoreValidator.ThrowIfNullOrEmpty(id, nameof(id));

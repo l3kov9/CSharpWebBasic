@@ -7,6 +7,7 @@
     using MyCoolWebServer.Server.Http;
     using Routing.Contracts;
     using System;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     public class HttpHandler : IRequestHandler
@@ -24,12 +25,13 @@
         {
             try
             {
-                var loginPath = "/login";
-
                 // Check if user is authenticated
-                if (context.Request.Path != loginPath && !context.Request.Session.Contains(SessionStore.CurrentUserKey))
+
+                var anonymousPaths = new[] { "/login", "/register" };
+
+                if (!anonymousPaths.Contains(context.Request.Path) && !context.Request.Session.Contains(SessionStore.CurrentUserKey))
                 {
-                    return new RedirectResponse(loginPath);
+                    return new RedirectResponse(anonymousPaths.First());
                 }
 
                 var requestMethod = context.Request.Method;
@@ -60,7 +62,7 @@
                     return routingContext.Handler.Handle(context);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new InternalServerErrorResponse(ex);
             }
